@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os 
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ SECRET_KEY = "django-insecure-70tl)_p8z*1&=4k-6(zz@d)bj3&ll+)osv2^7q!y7=urmnhr9&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://bala-study-room-app.herokuapp.com"]
 
 
 # Application definition
@@ -81,12 +82,24 @@ WSGI_APPLICATION = "discord_lite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": 'd9qs57n8o7r482',
+        "USER": 'ianragshyeyaqu',
+        "PASSWORD": 'c2e329546f4a2d7a5d5be0a1ca8f3875734943a4df651e973865c8575b1d7642',
+        "HOST": 'ec2-34-198-186-145.compute-1.amazonaws.com',
+        "PORT": '5432'
     }
 }
+
 
 
 # Password validation
@@ -125,7 +138,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = BASE_DIR / 'static/images'
-
+django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
